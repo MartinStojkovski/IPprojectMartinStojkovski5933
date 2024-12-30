@@ -1,0 +1,105 @@
+
+
+<div class="main-container">
+  
+  <div class="input-form-container">
+    <form>
+      <div>
+        <label for="invoice-id">Invoice ID:</label>
+        <input
+          type="text"
+          id="invoice-id"
+          [(ngModel)]="invoice.id"
+          name="id"
+          required
+          (input)="refreshPDF()"
+        />
+      </div>
+
+      <div>
+        <label for="issuer">Issuer:</label>
+        <input
+          type="text"
+          id="issuer"
+          [(ngModel)]="invoice.issuer"
+          name="issuer"
+          required
+          (input)="refreshPDF()"
+        />
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label for="recipient">Recipient:</label>
+        <input
+          type="text"
+          id="recipient"
+          [(ngModel)]="invoice.recipient"
+          name="recipient"
+          required
+          (input)="refreshPDF()"
+        />
+      </div>
+    </form>
+
+    <table class="theaders">
+      <th class="theader1">Product</th>
+      <th class="theader2">Quantity</th>
+      <th class="theader3">Price</th>
+    </table>
+
+    <div *ngFor="let row of rows; let i = index" class="row-container">
+      <table>
+        <tr>
+          <td>
+            <input
+              type="text"
+              [(ngModel)]="row.product"
+              placeholder="Product"
+              name="product-{{ i }}"
+              (input)="refreshPDF()"
+            />
+          </td>
+          <td>
+            <input
+              type="number"
+              [(ngModel)]="row.quantity"
+              (input)="updateTotalPrice(row); refreshPDF()"
+              placeholder="Quantity"
+              name="quantity-{{ i }}"
+            />
+          </td>
+          <td>
+            <input
+              type="number"
+              [(ngModel)]="row.price"
+              (input)="updateTotalPrice(row); refreshPDF()"
+              placeholder="Price"
+              name="price-{{ i }}"
+            />
+          </td>
+          <td class="total">
+            {{ row.totalPrice | number: '1.2-2' }}
+          </td>
+        </tr>
+      </table>
+
+      <button class="remove-btn" (click)="removeRow(i)">X</button>
+    </div>
+
+    <div style="margin-top: 20px; text-align: left; font-size: 16px;">
+      <strong>Subtotal:</strong>
+      <span>{{ calculateSubtotal() | number: '1.2-2' }}$</span>
+    </div>
+    
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+      <button (click)="addRow()">Add Item</button>
+      <button class="download-btn" (click)="downloadPDF()">Download</button>
+    </div>
+  </div>
+
+  <!-- Right Side: PDF Preview -->
+  <div class="pdf-preview">
+    <iframe [src]="pdfUrl" width="100%" height="500px"></iframe>
+  </div>
+</div>

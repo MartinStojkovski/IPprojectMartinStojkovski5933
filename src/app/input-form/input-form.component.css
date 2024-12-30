@@ -1,0 +1,148 @@
+body {
+  margin: 20px;
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.input-form-container {
+  width: 45%; /* Left side retains its styling */
+  margin-left: 5%;
+  margin-top: 100px;
+}
+
+.input-form-container form div {
+  margin-bottom: 20px;
+}
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin-right: 10px;
+  border-color: transparent;
+}
+
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  border-color: transparent;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: lightgrey; /* Set background color to light grey */
+  color: #000; /* Ensure text is readable */
+}
+
+input:focus {
+  outline: none;
+  border-color: #4CAF50; /* Optional: Highlight border when focused */
+  background-color: #e0e0e0; /* Slightly darker grey for focus state */
+}
+
+.row-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.remove-btn {
+  padding: 6px 12px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 60px;
+}
+
+.remove-btn:hover {
+  background-color: #d32f2f;
+}
+
+.remove-btn:focus {
+  outline: none;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.download-btn {
+  background-color: #2196F3;
+  margin-left: 10px;
+}
+
+.download-btn:hover {
+  background-color: #1e88e5;
+}
+
+.theaders {
+  width: 60%;
+}
+
+.theader3 {
+  transform: translateX(160px);
+  display: inline-block;
+}
+
+.theader1 {
+  transform: translateX(30px);
+  display: inline-block;
+}
+
+.theader2 {
+  transform: translateX(90px);
+  display: inline-block;
+}
+
+.pdf-preview {
+  width: 30%; 
+  margin-right: 10%;
+  height: 500px; 
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.pdf-preview iframe {
+  width: 100%; 
+  height: 100%; 
+  position: absolute;
+  
+  border: none; 
+  overflow: hidden; 
+}
+
+.input{
+  
+    width: 150px;
+    padding: 5px; 
+    box-sizing: border-box;
+  
+}
+
+.total{
+  width: 150px;
+  padding: 5px; 
+  box-sizing: border-box;
+}

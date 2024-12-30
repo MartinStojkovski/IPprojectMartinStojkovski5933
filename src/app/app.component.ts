@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
+  standalone: true,
+  imports: [RouterModule, HeaderComponent],
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  template: `
+    <app-header></app-header>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  `,
+  styles: [`
+    main {
+      padding: 20px;
+    }
+  `]
 })
-export class AppComponent {
-  title = 'invoice-website';
-}
+export class AppComponent {}

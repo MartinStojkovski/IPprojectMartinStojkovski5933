@@ -1,6 +1,16 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
+import { provideRouter, Route } from '@angular/router';
 import { AppComponent } from './app/app.component';
+import { HeaderComponent } from './app/header/header.component';
+import { InputFormComponent } from './app/input-form/input-form.component';
+import { SubscriptionComponent } from './app/subscription/subscription.component';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+const routes: Route[] = [
+  { path: '', redirectTo: '/input-form', pathMatch: 'full' },
+  { path: 'input-form', component: InputFormComponent },
+  { path: 'subscription', component: SubscriptionComponent },
+];
+
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(routes)],
+});
