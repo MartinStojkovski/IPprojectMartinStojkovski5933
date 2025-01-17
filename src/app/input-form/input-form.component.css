@@ -9,9 +9,9 @@ body {
 }
 
 .input-form-container {
-  width: 45%; /* Left side retains its styling */
+  width: 45%; 
   margin-left: 5%;
-  margin-top: 100px;
+  margin-top:  0px;
 }
 
 .input-form-container form div {
@@ -38,14 +38,14 @@ input {
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
-  background-color: lightgrey; /* Set background color to light grey */
-  color: #000; /* Ensure text is readable */
+  background-color: lightgrey; 
+  color: #000; 
 }
 
 input:focus {
   outline: none;
-  border-color: #4CAF50; /* Optional: Highlight border when focused */
-  background-color: #e0e0e0; /* Slightly darker grey for focus state */
+  border-color: #4CAF50; 
+  background-color: #e0e0e0; 
 }
 
 .row-container {
@@ -98,51 +98,228 @@ button:hover {
 .theaders {
   width: 60%;
 }
+.theader4{
+  transform: translateX(300px);
+  display: inline-block;
+}
 
 .theader3 {
-  transform: translateX(160px);
+  transform: translateX(240px);
   display: inline-block;
 }
 
 .theader1 {
-  transform: translateX(30px);
+  transform: translateX(40px);
   display: inline-block;
 }
 
 .theader2 {
-  transform: translateX(90px);
+  transform: translateX(140px);
   display: inline-block;
 }
 
 .pdf-preview {
-  width: 30%; 
-  margin-right: 10%;
-  height: 500px; 
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+
+  border: 1px solid #ccc; 
+  border-radius: 15px; 
+  padding: 20px; 
+  margin-top: 20px;
+  margin-right: 100px; 
+  width: 600px; 
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Helvetica; 
+  font-size: 14px; 
+  color: #000;
+  line-height: 1.5;
+  position:relative;
+}
+
+.pdf-mock h2 {
+  margin-top:35px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  padding-top: 20px;
+}
+
+.pdf-mock p {
+  margin: 5px 0;
+  padding-top: 10px; 
+}
+
+.pdf-mock table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  padding-top: 20px; 
+}
+
+.pdf-mock th,
+.pdf-mock td {
+  padding: 8px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.pdf-mock th {
+  font-weight: bold;
+  text-align: left;
+  padding-top: 10px; 
+}
+
+.pdf-mock tbody td {
+  border: none; 
+}
+
+.pdf-mock .totals {
+  padding-top: 20px; 
+}
+
+.pdf-mock .signature-section {
+  margin-top: 40px; 
+  display: flex;
+  justify-content: space-between;
+}
+
+.pdf-mock .signature {
+  text-align: center;
+  width: 40%;
+  border-top: 1px solid #000;
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center; 
+  gap: 20px; 
+  margin-top: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.invoice-id-input {
+  width: 500px; 
+  padding: 5px;
+  font-size: 14px;
+}
+
+.logo-upload-container {
+  width: 150px; 
+  height: 150px;
+  border: 2px dashed #ccc; 
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+  background-color: transparent;
   position: relative;
 }
 
-.pdf-preview iframe {
-  width: 100%; 
-  height: 100%; 
+.logo-upload-container.photo-attached {
+  border-color: #4CAF50;
+  background-color: #e6ffe6; 
+}
+
+.logo-upload-label {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+}
+
+.logo-upload-input {
   position: absolute;
-  
-  border: none; 
-  overflow: hidden; 
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
 }
 
-.input{
-  
-    width: 150px;
-    padding: 5px; 
-    box-sizing: border-box;
-  
+.logo-upload-placeholder {
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+  pointer-events: none; 
 }
 
-.total{
+.tax-display-dropdown {
   width: 150px;
-  padding: 5px; 
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: lightgrey;
+  color: #000;
+  font-size: 14px;
   box-sizing: border-box;
+  appearance: none; 
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.tax-display-dropdown:focus {
+  outline: none;
+  border-color: #4CAF50; 
+  background-color: #e0e0e0; 
+}
+
+.tax-display-dropdown:hover {
+  border-color: #4CAF50;
+}
+
+.row-container table input[type="text"],
+.row-container table input[type="number"] {
+  width: 150px; 
+  height: 30px; 
+  box-sizing: border-box; 
+  padding: 5px;
+  font-size: 14px; 
+}
+
+.row-container table {
+  border-collapse: collapse; 
+}
+
+.row-container td {
+  padding: 5px; 
+}
+
+.row-container .remove-btn {
+  margin-top: 10px; 
+  padding: 5px 10px; 
+  cursor: pointer;
+}
+
+.signature-section {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 50px;
+}
+
+.signature-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+}
+
+.signature-line::before {
+  content: '';
+  display: block;
+  width: 100%;
+  border-top: 1px solid black;
+  margin-bottom: 5px;
 }

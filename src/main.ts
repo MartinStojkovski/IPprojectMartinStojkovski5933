@@ -5,8 +5,10 @@ import { HeaderComponent } from './app/header/header.component';
 import { InputFormComponent } from './app/input-form/input-form.component';
 import { SubscriptionComponent } from './app/subscription/subscription.component';
 
+
 const routes: Route[] = [
   { path: '', redirectTo: '/input-form', pathMatch: 'full' },
+
   { path: 'input-form', component: InputFormComponent },
   { path: 'subscription', component: SubscriptionComponent },
 ];

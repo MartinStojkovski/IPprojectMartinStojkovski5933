@@ -1,21 +1,33 @@
-
-
 <div class="main-container">
-  
   <div class="input-form-container">
     <form>
-      <div>
-        <label for="invoice-id">Invoice ID:</label>
-        <input
-          type="text"
-          id="invoice-id"
-          [(ngModel)]="invoice.id"
-          name="id"
-          required
-          (input)="refreshPDF()"
-        />
+      <div class="flex-container">
+        <div class="input-group">
+          <label for="invoice-id">Invoice ID:</label>
+          <input
+            type="text"
+            id="invoice-id"
+            [(ngModel)]="invoice.id"
+            name="id"
+            required
+            class="invoice-id-input"
+          />
+        </div>
+        <div class="logo-upload-container" [class.photo-attached]="logoUploaded">
+          <label for="logo-upload" class="logo-upload-label">
+            <input
+              type="file"
+              id="logo-upload"
+              (change)="onLogoUpload($event)"
+              accept="image/*"
+              class="logo-upload-input"
+            />
+            <span class="logo-upload-placeholder">
+              {{ logoUploaded ? 'Logo Attached!' : 'Click to upload logo' }}
+            </span>
+          </label>
+        </div>
       </div>
-
       <div>
         <label for="issuer">Issuer:</label>
         <input
@@ -27,7 +39,6 @@
           (input)="refreshPDF()"
         />
       </div>
-
       <div style="margin-bottom: 20px;">
         <label for="recipient">Recipient:</label>
         <input
@@ -39,14 +50,42 @@
           (input)="refreshPDF()"
         />
       </div>
+      <!-- Combined Tax Percentage and Display Option Row -->
+      <div class="flex-container" style="margin-bottom: 20px;">
+        <div class="input-group">
+          <label for="tax-percentage">Tax Percentage:</label>
+          <input
+            type="number"
+            id="tax-percentage"
+            [(ngModel)]="taxPercentage"
+            name="taxPercentage"
+            (input)="refreshPDF()"
+            style="width: 500px;"
+          />
+        </div>
+        <div class="input-group">
+          <label for="tax-display-option">Tax Display:</label>
+          <select
+            id="tax-display-option"
+            [(ngModel)]="taxDisplayOption"
+            name="taxDisplayOption"
+            (change)="refreshPDF()"
+            class="tax-display-dropdown"
+          >
+            <option value="item">Per Row</option>
+            <option value="bottom">At Bottom</option>
+          </select>
+        </div>
+      
+      </div>
     </form>
-
     <table class="theaders">
       <th class="theader1">Product</th>
       <th class="theader2">Quantity</th>
       <th class="theader3">Price</th>
+      <th class="theader4">Total</th>
+      
     </table>
-
     <div *ngFor="let row of rows; let i = index" class="row-container">
       <table>
         <tr>
@@ -77,29 +116,68 @@
               name="price-{{ i }}"
             />
           </td>
-          <td class="total">
-            {{ row.totalPrice | number: '1.2-2' }}
-          </td>
+          <td class="total">{{ row.totalPrice | number: '1.2-2' }}</td>
+          
         </tr>
       </table>
-
       <button class="remove-btn" (click)="removeRow(i)">X</button>
     </div>
-
     <div style="margin-top: 20px; text-align: left; font-size: 16px;">
       <strong>Subtotal:</strong>
       <span>{{ calculateSubtotal() | number: '1.2-2' }}$</span>
     </div>
     
-
     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
       <button (click)="addRow()">Add Item</button>
       <button class="download-btn" (click)="downloadPDF()">Download</button>
     </div>
   </div>
-
-  <!-- Right Side: PDF Preview -->
   <div class="pdf-preview">
-    <iframe [src]="pdfUrl" width="100%" height="500px"></iframe>
+    <div class="pdf-mock">
+      <img *ngIf="logoBase64" [src]="logoBase64" style="width: 150px; height: 150px; position: absolute; top: 10px; right: 20px;" />
+      <h2>INVOICE</h2>
+      <div class="header">
+        <p><strong>Invoice ID:</strong> {{ invoice.id }}</p>
+        <p><strong>Issuer:</strong> {{ invoice.issuer }}</p>
+        <p><strong>Recipient:</strong> {{ invoice.recipient }}</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th *ngIf="taxDisplayOption === 'item'">Tax</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of rows">
+            <td>{{ row.product }}</td>
+            <td>{{ row.quantity }}</td>
+            <td>{{ row.price | number: '1.2-2' }}$</td>
+            <td>{{ row.totalPrice | number: '1.2-2' }}$</td>
+            <td *ngIf="taxDisplayOption === 'item'">
+              {{ calculateTax(row.totalPrice) | number: '1.2-2' }}$
+              ({{ taxPercentage }}%)
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="totals">
+        <p><strong>Subtotal:</strong> {{ calculateSubtotal() | number: '1.2-2' }}$</p>
+        <p *ngIf="taxDisplayOption === 'bottom'"><strong>Total Tax:</strong> {{ calculateTotalTax() | number: '1.2-2' }}$ ({{ taxPercentage }}%)</p>
+        <p><strong>Total:</strong> {{ (calculateSubtotal() + calculateTotalTax()) | number: '1.2-2' }}$</p>
+      </div>
+      <div class="signature-section">
+        <div class="signature-line">
+          <span>Issuer</span>
+        </div>
+        <div class="signature-line">
+          <span>Recipient</span>
+        </div>
+      </div>
+    </div>
   </div>
+  
 </div>
