@@ -5,10 +5,12 @@ const cors = require("cors");
 const fs = require("fs");
 
 const app = express();
-const PORT = 3001;
+const PORT = 3000;
 
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:4200', // Frontend's origin
+}));
 
 
 
@@ -48,4 +50,22 @@ app.post("/upload-pdf", upload.single("pdf"), (req, res) => {
 
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+app.get("/list-files", (req, res) => {
+  const uploadPath = path.join(__dirname, "uploads");
+  fs.readdir(uploadPath, (err, files) => {
+    if (err) {
+      console.error("Error reading files:", err);
+      return res.status(500).json({ message: "Failed to list files." });
+    }
+    res.status(200).json(files);
+  });
+});
+
+
+
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
 

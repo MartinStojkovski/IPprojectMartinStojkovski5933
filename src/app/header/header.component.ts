@@ -9,44 +9,59 @@ import { RouterModule } from '@angular/router';
     <header>
       <div class="container">
         <a routerLink="/input-form" class="logo">InvoiceMaker</a>
-        <a routerLink="/subscription" class="sub">Subscription</a>
+        <div class="buttons">
+          <a routerLink="/archive" class="archive">Archive</a>
+          <a routerLink="/subscription" class="sub">Subscription</a>
+        </div>
       </div>
     </header>
   `,
   styles: [`
     header {
-    background: rgb(75, 128, 0);
-    padding:0;
-    height:100px;
-}
+      background: rgb(75, 128, 0);
+      padding: 0;
+      height: 100px;
+    }
 
-a{
-    
-    color:white;
+    a {
+      color: white;
+      text-decoration: none;
+    }
 
-}
+    a:hover {
+      background-color: rgb(134, 220, 4);
+      color: white;
+    }
 
-a:hover{
-    background-color:rgb(134, 220, 4);
-    color:white;
-}
+    .container {
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
 
-.container{
-    margin:0 auto;
-    display: flex;
-    justify-content: space-between;
-}
+    .logo {
+      font-weight: bold;
+      font-size: 30.6px;
+      padding: 1em;
+    }
 
-.logo{
-    font-weight:bold;
-    padding:1em;
-    font-size:30.6px;
-}
+    .logo:hover {
+      background-color: rgb(134, 220, 4);
+      color: white;
+    }
 
-.sub{
-    padding:1em;
-    font-size:30.6px;   
-}
+    .buttons {
+      display: flex;
+      
+      margin-left: auto;
+    }
+
+    .archive, .sub {
+      padding: 1em;
+      font-size: 30.6px;
+    }
   `]
 })
 export class HeaderComponent {}
